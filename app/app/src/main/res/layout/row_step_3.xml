@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/stepper_step"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginRight="@dimen/stepper_step_margin_right"
+        android:background="@drawable/background_stepper_step_inactive"
+        android:gravity="center"
+        android:text="@string/step_3_stepper_number"
+        android:textColor="@color/stepper_step_textColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/stepper_check"
+        android:visibility="invisible"
+        android:layout_width="@dimen/stepper_step_size"
+        android:layout_height="@dimen/stepper_step_size"
+        app:srcCompat="@drawable/ic_done_white_24dp"
+        android:padding="4dp"
+        android:background="@drawable/background_stepper_step_active"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/stepper_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/stepper_step_inactive_background"
+        android:text="@string/step_3_stepper_title"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/stepper_step_margin_right"
+        app:layout_constraintBottom_toBottomOf="@+id/stepper_step"
+        app:layout_constraintStart_toEndOf="@+id/stepper_step"
+        app:layout_constraintTop_toTopOf="@+id/stepper_step" />
+
+    <LinearLayout
+        android:id="@+id/stepper_reveal"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintLeft_toLeftOf="@id/stepper_title"
+        app:layout_constraintTop_toBottomOf="@id/stepper_title"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <CheckBox
+            android:id="@+id/cb_access"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step_3_explanation"/>
+
+        <Spinner
+            android:id="@+id/spinner_wifi_picker"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/reveal_continue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step_continue"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/reveal_lower_padding"
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lower_padding"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/stepper_reveal"
+        app:layout_constraintLeft_toLeftOf="@id/stepper_title"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/stepper_connector_line"
+        android:layout_marginTop="@dimen/stepper_connector_margin_vertical"
+        android:layout_marginBottom="@dimen/stepper_connector_margin_vertical"
+        app:layout_constraintLeft_toLeftOf="@id/stepper_step"
+        app:layout_constraintRight_toRightOf="@id/stepper_step"
+        app:layout_constraintTop_toBottomOf="@id/stepper_step"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

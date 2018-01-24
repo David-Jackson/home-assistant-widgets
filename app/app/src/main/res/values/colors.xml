@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="stepper_step_inactive_background">#6e6e6e</color>
+    <color name="stepper_step_active_background">@color/google_blue_500</color>
+    <color name="stepper_step_textColor">#FFFFFF</color>
+    <color name="stepper_connector_line">@color/google_grey_400</color>
+
 </resources>

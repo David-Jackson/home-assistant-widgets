@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">HomeAssistantWidgets</string>
+
+    <!--Setup Activity-->
+    <string name="setup_activity_title">Setup</string>
+    <string name="step_1_stepper_number">1</string>
+    <string name="step_1_stepper_title">Domain</string>
+    <string name="step_2_stepper_number">2</string>
+    <string name="step_2_stepper_title">Protocol</string>
+    <string name="step_3_stepper_number">3</string>
+    <string name="step_3_stepper_title">Access</string>
+    <string name="step_4_stepper_number">4</string>
+    <string name="step_4_stepper_title">Password</string>
+    <string name="step_continue">Continue</string>
+    <string name="step_1_domain_explanation">Enter your Home Assistant domain or IP Address</string>
+    <string name="step_1_domain_hint">i.e. domain.duckdns.org or 192.168.1.100:8123</string>
+    <string name="step_2_protocol_explanation">HTTPS Enabled?</string>
+    <string name="step_3_explanation">Accessible over Internet?</string>
+    <string name="step_4_explanation">Enter your Home Assistant password</string>
+
+    <string name="regex_lax_url"><![CDATA[(http(s)?:\\/\\/.)?(www\\.)?[–a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)]]></string>
+    <string name="regex_strict_https_url"><![CDATA[https:\\/\\/(www\\.)?[–a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)]]></string>
 </resources>

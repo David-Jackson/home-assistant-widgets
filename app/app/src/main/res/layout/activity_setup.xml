@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/stepper_step_margin_left"
+    android:paddingTop="@dimen/stepper_step_margin_top"
+    android:id="@+id/parent_layout"
+    tools:context="fyi.jackson.drew.homeassistantwidgets.SetupActivity">
+
+
+    <include android:id="@+id/step_1" layout="@layout/row_step_1" />
+    <include android:id="@+id/step_2" layout="@layout/row_step_2" />
+    <include android:id="@+id/step_3" layout="@layout/row_step_3" />
+    <include android:id="@+id/step_4" layout="@layout/row_step_4" />
+
+</LinearLayout>

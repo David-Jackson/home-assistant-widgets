@@ -8,4 +8,7 @@
     tools:context="fyi.jackson.drew.homeassistantwidgets.MainActivity">
 
 
+    <include layout="@layout/row_step_1" />
+    <include layout="@layout/row_step_1" />
+    <include layout="@layout/row_step_1" />
 </LinearLayout>
