@@ -106,25 +106,22 @@ public class SetupActivity extends AppCompatActivity {
 
     private void collapseCurrentStep() {
         if (currentStep < 0 || currentStep >= stepLayouts.length) return;
-        findViewById(stepLayouts[currentStep])
-                .findViewById(R.id.stepper_check)
+        View layout = findViewById(stepLayouts[currentStep]);
+        layout.findViewById(R.id.stepper_check)
                 .setVisibility(View.VISIBLE);
-        findViewById(stepLayouts[currentStep])
-                .findViewById(R.id.stepper_reveal)
+        layout.findViewById(R.id.stepper_reveal)
                 .setVisibility(View.GONE);
     }
 
     private void expandCurrentStep() {
+        View layout = findViewById(stepLayouts[currentStep]);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            findViewById(stepLayouts[currentStep])
-                    .findViewById(R.id.stepper_step)
+            layout.findViewById(R.id.stepper_step)
                     .setBackground(getDrawable(R.drawable.background_stepper_step_active));
         }
-        findViewById(stepLayouts[currentStep])
-                .findViewById(R.id.stepper_reveal)
+        layout.findViewById(R.id.stepper_reveal)
                 .setVisibility(View.VISIBLE);
-        findViewById(stepLayouts[currentStep])
-                .findViewById(R.id.reveal_continue)
+        layout.findViewById(R.id.reveal_continue)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -133,8 +130,8 @@ public class SetupActivity extends AppCompatActivity {
                         }
                     }
                 });
-        findViewById(stepLayouts[currentStep]).setTag(currentStep);
-        findViewById(stepLayouts[currentStep]).setOnClickListener(new View.OnClickListener() {
+        layout.setTag(currentStep);
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToStep((Integer) view.getTag());
