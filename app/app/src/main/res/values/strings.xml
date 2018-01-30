@@ -23,4 +23,11 @@
     <string name="regex_lax_http"><![CDATA[(https?:\\/\\/)?]]></string>
     <string name="regex_strict_https"><![CDATA[(https:\/\/)]]></string>
 
+
+    <!--SharedPreferences-->
+    <string name="sp_ha_domain">sp_ha_domain</string>
+    <string name="sp_ha_password">sp_ha_password</string>
+    <string name="sp_ha_https">sp_ha_https</string>
+    <string name="sp_ha_internet_access">sp_ha_internet_access</string>
+
 </resources>

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import java.util.regex.Pattern;
 
+import fyi.jackson.drew.homeassistantwidgets.utils.PrefUtils;
 import fyi.jackson.drew.homeassistantwidgets.utils.StringUtils;
 
 public class SetupActivity extends AppCompatActivity {
@@ -21,6 +22,11 @@ public class SetupActivity extends AppCompatActivity {
     LinearLayout parentLayout;
     int[] stepLayouts;
     int currentStep = -1;
+
+    EditText domainEditText;
+    CheckBox protocolCheckBox;
+    CheckBox accessCheckBox;
+    EditText passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,14 @@ public class SetupActivity extends AppCompatActivity {
             }
         }, 1000);
 
+        bindElements();
+    }
+
+    private void bindElements() {
+        domainEditText = findViewById(R.id.et_domain);
+        protocolCheckBox = findViewById(R.id.cb_protocol);
+        accessCheckBox = findViewById(R.id.cb_access);
+        passwordEditText = findViewById(R.id.et_password);
     }
 
     private boolean validateCurrentStep() {
@@ -55,9 +69,9 @@ public class SetupActivity extends AppCompatActivity {
             case 0: // Domain
                 return validateDomain();
             case 1: // Protocol
-                return true;
+                return validateProtocol();
             case 2: // Access
-                return true;
+                return validateAccess();
             case 3: // Password
                 return validatePassword();
             default:
@@ -65,22 +79,37 @@ public class SetupActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validateDomain() {
-        EditText domainEditText = findViewById(R.id.et_domain);
+    private boolean validateDomain() {
         String domain = domainEditText.getText().toString();
 
         if (StringUtils.matchesUrlOrIpAddress(domain, this)) {
             protocolCheckBox.setChecked(
                     StringUtils.matchesHttpsUrlOrIp(domain, this)
             );
+            PrefUtils.setString(getString(R.string.sp_ha_domain), domain, this);
             return true;
         }
         return false;
     }
 
-    public boolean validatePassword() {
-        EditText passwordEditText = findViewById(R.id.et_password);
+    private boolean validateProtocol() {
+        PrefUtils.setBoolean(getString(R.string.sp_ha_internet_access),
+                protocolCheckBox.isChecked(), this);
+        return true;
+    }
+
+    private boolean validateAccess() {
+        PrefUtils.setBoolean(getString(R.string.sp_ha_internet_access),
+                accessCheckBox.isChecked(), this);
+        return true;
+    }
+
+    private boolean validatePassword() {
         String password = passwordEditText.getText().toString();
+        boolean valid = !password.isEmpty();
+        if (valid) {
+            PrefUtils.setString(getString(R.string.sp_ha_password), password, this);
+        }
         return !password.isEmpty();
     }
 
