@@ -137,9 +137,7 @@ public class SetupActivity extends AppCompatActivity {
         findViewById(stepLayouts[currentStep]).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validateCurrentStep()) {
-                    goToStep((Integer) view.getTag());
-                }
+                goToStep((Integer) view.getTag());
             }
         });
     }
