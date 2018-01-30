@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 
 import java.util.regex.Pattern;
 
+import fyi.jackson.drew.homeassistantwidgets.utils.StringUtils;
+
 public class SetupActivity extends AppCompatActivity {
 
     public static final String TAG = "SetupActivity";
@@ -67,11 +69,9 @@ public class SetupActivity extends AppCompatActivity {
         EditText domainEditText = findViewById(R.id.et_domain);
         String domain = domainEditText.getText().toString();
 
-        Log.d(TAG, "validateDomain: " + getString(R.string.regex_lax_url));
-        Log.d(TAG, "validateDomain: " + domain.matches(getString(R.string.regex_lax_url)));
-        if (domain.matches(getString(R.string.regex_lax_url))) {
-            ((CheckBox) findViewById(R.id.cb_protocol)).setChecked(
-                    domain.matches(getString(R.string.regex_strict_https_url))
+        if (StringUtils.matchesUrlOrIpAddress(domain, this)) {
+            protocolCheckBox.setChecked(
+                    StringUtils.matchesHttpsUrlOrIp(domain, this)
             );
             return true;
         }
