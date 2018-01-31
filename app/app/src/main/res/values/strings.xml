@@ -18,7 +18,7 @@
     <string name="step_3_explanation">Accessible over Internet?</string>
     <string name="step_4_explanation">Enter your Home Assistant password</string>
 
-    <string name="regex_url"><![CDATA[(www\\.)?[–a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)]]></string>
+    <string name="regex_url"><![CDATA[(www\\.)?[–a-zA-Z0-9@:%._\\+-~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)]]></string>
     <string name="regex_ip"><![CDATA[\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(\\:\\d{1,4})?]]></string>
     <string name="regex_lax_http"><![CDATA[(https?:\\/\\/)?]]></string>
     <string name="regex_strict_https"><![CDATA[(https:\/\/)]]></string>
@@ -28,6 +28,6 @@
     <string name="sp_ha_domain">sp_ha_domain</string>
     <string name="sp_ha_password">sp_ha_password</string>
     <string name="sp_ha_https">sp_ha_https</string>
-    <string name="sp_ha_internet_access">sp_ha_internet_access</string>
+    <string name="sp_ha_access">sp_ha_internet_access</string>
 
 </resources>

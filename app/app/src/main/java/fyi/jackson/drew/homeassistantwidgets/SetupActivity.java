@@ -1,16 +1,14 @@
 package fyi.jackson.drew.homeassistantwidgets;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
-import java.util.regex.Pattern;
 
 import fyi.jackson.drew.homeassistantwidgets.utils.PrefUtils;
 import fyi.jackson.drew.homeassistantwidgets.utils.StringUtils;
@@ -55,6 +53,7 @@ public class SetupActivity extends AppCompatActivity {
         }, 1000);
 
         bindElements();
+        fillWithPreferences();
     }
 
     private void bindElements() {
@@ -62,6 +61,20 @@ public class SetupActivity extends AppCompatActivity {
         protocolCheckBox = findViewById(R.id.cb_protocol);
         accessCheckBox = findViewById(R.id.cb_access);
         passwordEditText = findViewById(R.id.et_password);
+    }
+
+    private void fillWithPreferences() {
+        SharedPreferences sharedPrefs = PrefUtils.getPreferences(this);
+
+        String domain = sharedPrefs.getString(getString(R.string.sp_ha_domain), null);
+        boolean isHttps = sharedPrefs.getBoolean(getString(R.string.sp_ha_https), false);
+        boolean access = sharedPrefs.getBoolean(getString(R.string.sp_ha_access), false);
+        String password = sharedPrefs.getString(getString(R.string.sp_ha_password), null);
+
+        if (domain != null) domainEditText.setText(domain);
+        protocolCheckBox.setChecked(isHttps);
+        accessCheckBox.setChecked(access);
+        if (password != null) passwordEditText.setText(password);
     }
 
     private boolean validateCurrentStep() {
@@ -93,13 +106,13 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private boolean validateProtocol() {
-        PrefUtils.setBoolean(getString(R.string.sp_ha_internet_access),
+        PrefUtils.setBoolean(getString(R.string.sp_ha_https),
                 protocolCheckBox.isChecked(), this);
         return true;
     }
 
     private boolean validateAccess() {
-        PrefUtils.setBoolean(getString(R.string.sp_ha_internet_access),
+        PrefUtils.setBoolean(getString(R.string.sp_ha_access),
                 accessCheckBox.isChecked(), this);
         return true;
     }
