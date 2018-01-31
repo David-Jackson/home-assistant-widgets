@@ -7,8 +7,17 @@
     android:orientation="vertical"
     tools:context="fyi.jackson.drew.homeassistantwidgets.MainActivity">
 
+    <Button
+        android:onClick="request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do Request"/>
 
-    <include layout="@layout/row_step_1" />
-    <include layout="@layout/row_step_1" />
-    <include layout="@layout/row_step_1" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
@@ -12,6 +14,7 @@ import java.util.List;
 import fyi.jackson.drew.homeassistantwidgets.network.Configuration;
 import fyi.jackson.drew.homeassistantwidgets.network.HomeAssistantInterface;
 import fyi.jackson.drew.homeassistantwidgets.network.State;
+import fyi.jackson.drew.homeassistantwidgets.recycler.AddComponentAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     Retrofit retrofit;
     HomeAssistantInterface haInterface;
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         haInterface = retrofit.create(HomeAssistantInterface.class);
+
+        recyclerView = findViewById(R.id.rv);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new AddComponentAdapter();
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     private void openSetupActivity() {
@@ -58,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: ");
                 Log.d(TAG, "\t " + response.code());
                 Log.d(TAG, "\t " + response.body());
+                ((AddComponentAdapter) adapter).setStateList(response.body());
+                adapter.notifyDataSetChanged();
             }
 
             @Override
