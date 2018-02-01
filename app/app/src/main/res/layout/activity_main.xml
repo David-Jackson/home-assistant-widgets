@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context="fyi.jackson.drew.homeassistantwidgets.MainActivity">
 
+    <ImageView
+        android:id="@+id/iv_test"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"/>
     <Button
         android:onClick="request"
         android:layout_width="match_parent"

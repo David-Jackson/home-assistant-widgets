@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import fyi.jackson.drew.homeassistantwidgets.network.Configuration;
 import fyi.jackson.drew.homeassistantwidgets.network.HomeAssistantInterface;
 import fyi.jackson.drew.homeassistantwidgets.network.State;
 import fyi.jackson.drew.homeassistantwidgets.recycler.AddComponentAdapter;
+import fyi.jackson.drew.homeassistantwidgets.utils.MaterialDesignIcons;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
+
+    MaterialDesignIcons mdIcons;
+    ImageView testImageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
         adapter = new AddComponentAdapter();
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        testImageView = findViewById(R.id.iv_test);
+        mdIcons = new MaterialDesignIcons() {
+            @Override
+            public void onIconsLoaded() {
+                Log.d(TAG, "onIconsLoaded: " + findIcon("amazon-clouddrive"));
+                Log.d(TAG, "onIconsLoaded: ImageView: " + testImageView.getWidth() + " x " + testImageView.getHeight());
+                testImageView.setImageDrawable(getIconDrawable("amazon-clouddrive", testImageView.getWidth(), testImageView.getHeight()));
+            }
+        };
     }
 
     private void openSetupActivity() {
