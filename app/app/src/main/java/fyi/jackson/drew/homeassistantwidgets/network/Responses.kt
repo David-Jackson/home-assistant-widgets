@@ -2,6 +2,8 @@ package fyi.jackson.drew.homeassistantwidgets.network
 
 import com.google.gson.annotations.SerializedName
 
+// Responses for Home Assistant API
+
 data class Status(var message: String)
 
 data class UnitSystem(
@@ -54,4 +56,40 @@ data class Attributes (
         @SerializedName("access_token") var accessToken: String
 
         // there are many more... maybe just be JSONObject instead?
+)
+
+
+// Responses for Material Design Icons API
+
+data class Package (
+        var id: String,
+        var name: String,
+        var description: String,
+        var size: Int,
+        var iconCount: Int
+)
+
+data class InitData (
+        var name: String,
+        var description: String,
+        var intro: String,
+        var packages: List<Package>
+)
+
+data class IconUser (
+        var id: String,
+        var name: String
+)
+
+data class Icon (
+        var id: String,
+        var name: String,
+        var aliases: List<String>,
+        var data: String,
+        var user: IconUser,
+        var commentCount: Int
+)
+
+data class IconsList (
+        var icons: List<Icon>
 )
